@@ -1,12 +1,17 @@
 {
   "name": "line-scrapper",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "description": "Tool to scrap line stickers",
+  "homepage": "https://github.com/Konosprod/lineScrapper",
+  "author": {"name": "Konosprod"},
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "build-angular": "ng build --base-href ./",
+    "build": "run-s build-angular run",
+    "test": "ng test",
+    "run": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "private": true,
   "dependencies": {
@@ -35,12 +40,22 @@
     "@angular/compiler-cli": "~13.3.0",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
+    "electron": "^22.0.0",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "npm-run-all": "^4.1.5",
     "typescript": "~4.6.2"
+  },
+  "postinstall": "electron-builder install-app-deps",
+  "build": {
+    "appId": "fr.konosprod.linescrapper",
+    "files": [
+      "build",
+      "src"
+    ]
   }
 }
